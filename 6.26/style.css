@@ -1,0 +1,12 @@
+			h1{
+				color:red;
+			}  /*get access via h1 tag*/
+			.textBlue{
+				color:blue;
+			} /*get access via class*/
+			#productDsc{
+				color:yellow;
+			} /*get access via id*/
+			button{
+				border: 2px solid red;
+			}
