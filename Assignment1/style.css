@@ -1,21 +1,49 @@
-/*div {
-	width: 50%; height:500px;
-}*/
-
-p {
-	color: red;
+header, main, footer {
+	font-family:  "Comic Sans MS", cursive, sans-serif;
+	min-width: auto;
 	text-align: center;
 }
 
-h1 {
-	color: red;
-	text-align: center;
+body{
+	background: white;
 }
 
-footer {
-	text-align: center;
-	color: red;
+header {
+	background: grey;
+	overflow: auto;
+	font-size: 20px;
+	border-style: solid;
+	border-color: grey;
+	padding: 10px;
 }
-.centered {
-	height: 500px; width: 
+
+header span {
+	float: left;
+	width: auto;
 }
+
+header nav {
+	float: right;
+	width: auto;
+}
+
+#avatar1 {
+	padding:5%;
+	float: left;
+}
+
+#avatar2 {
+	float: right;
+	padding: 5%;
+}
+
+
+
+.emptySpace {
+	margin: auto;
+	background: green;
+	height: 500px;
+	width: 50%;
+	padding: 10px;
+}
+

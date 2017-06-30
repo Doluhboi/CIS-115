@@ -1,14 +1,5 @@
 window.onload = function() {
 
-	// // init folders
-	// let foldersArray = ["assign1","assign2","assign3","assign4","assign5","assign6","assign7"];
-	// let fol = document.querySelector("#folders");
-	// for (let i = 0; i < foldersArray.length; i++){
-	// 	let folderItem = document.createElement("a");
-	// 	folderItem.innerHTML = foldersArray[i] + " ";
-	// 	fol.appendChild(folderItem);
-	// }
-
 	// clock
 	let now = new Date();
 	let ampm = "am";
@@ -31,7 +22,7 @@ window.onload = function() {
 	t.appendChild(tVal)
 
 	//avatars
-	let avatars = ["/home/kyle/CIS-115/Assignment1/images/BB.jpg","/home/kyle/CIS-115/Assignment1/images/Val.jpg",
+	let avatars = [
 	"/home/kyle/CIS-115/Assignment1/images/sledge.jpg","/home/kyle/CIS-115/Assignment1/images/jager.jpg",
 	"/home/kyle/CIS-115/Assignment1/images/castle.jpg","/home/kyle/CIS-115/Assignment1/images/fuze.jpg"];
 	let rand1 = avatars[Math.floor(Math.random() * avatars.length)];
@@ -44,10 +35,17 @@ window.onload = function() {
 	let avatar2 = document.querySelector("#avatar2");
 	avatar2.src = rand2;
 
-	// get users info
-	//let user1 = prompt("User ones name: ");
+	//get users info
+	let user1 = "kyle" //prompt("User ones name: ");
 
-	//let user2 = prompt("User twos name: ");
+	let user2 = "batman" //prompt("User twos name: ");
+
+	let avatar1Name = document.createElement("ul");
+	let avatar2Name = document.createElement("ul");
+	avatar1Name.innerHTML = user1;
+
+
+
 
 
 
