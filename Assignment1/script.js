@@ -40,9 +40,15 @@ window.onload = function() {
 
 	let user2 = "batman" //prompt("User twos name: ");
 
-	let avatar1Name = document.createElement("ul");
-	let avatar2Name = document.createElement("ul");
-	avatar1Name.innerHTML = user1;
+	// let user1Tag = document.querySelector("user1");
+	// let avatar1Name = document.createElement("ul");
+	// avatar1Name.innerHTML = user1;
+	// user1Tag.appendChild(avatar1Name);
+
+	// let user2Tag = document.querySelector("user2");
+	// let avatar2Name = document.createElement("ul");
+	// avatar2Name.innerHTML = user2;
+	// user2Tag.appendChild(avatar2Name);
 
 
 
