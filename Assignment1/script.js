@@ -45,9 +45,9 @@ window.onload = function() {
 	avatar2.src = rand2;
 
 	// get users info
-	let user1 = prompt("User ones name: ");
+	//let user1 = prompt("User ones name: ");
 
-	let user2 = prompt("User twos name: ");
+	//let user2 = prompt("User twos name: ");
 
 
 
