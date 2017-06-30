@@ -30,5 +30,26 @@ window.onload = function() {
 	tVal.innerHTML = dateTime;
 	t.appendChild(tVal)
 
+	//avatars
+	let avatars = ["/home/kyle/CIS-115/Assignment1/images/BB.jpg","/home/kyle/CIS-115/Assignment1/images/Val.jpg",
+	"/home/kyle/CIS-115/Assignment1/images/sledge.jpg","/home/kyle/CIS-115/Assignment1/images/jager.jpg",
+	"/home/kyle/CIS-115/Assignment1/images/castle.jpg","/home/kyle/CIS-115/Assignment1/images/fuze.jpg"];
+	let rand1 = avatars[Math.floor(Math.random() * avatars.length)];
+	let rand2 = avatars[Math.floor(Math.random() * avatars.length)];
+	while (rand1 == rand2){
+		rand2 = avatars[Math.floor(Math.random() * avatars.length)];
+	}
+	let avatar1 = document.querySelector("#avatar1");
+	avatar1.src = rand1;
+	let avatar2 = document.querySelector("#avatar2");
+	avatar2.src = rand2;
+
+	// get users info
+	let user1 = prompt("User ones name: ");
+
+	let user2 = prompt("User twos name: ");
+
+
+
 
 }
