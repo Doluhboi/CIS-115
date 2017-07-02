@@ -1,66 +1,68 @@
-header, main .text, footer {
+header, .text, footer, #user1, #user2 {
 	font-family:  "Comic Sans MS", cursive, sans-serif;
-	min-width: auto;
-	text-align: center;
-}
-
-body{
-	background: white;
 }
 
 header {
-	background: grey;
-	overflow: auto;
+	background: green;
+	padding: 20px;
 	font-size: 20px;
-	border-style: solid;
-	border-color: grey;
-	padding: 10px;
+	overflow: auto;
 }
 
 header span {
 	float: left;
-	width: auto;
 }
 
 header nav {
 	float: right;
-	width: auto;
 }
 
-/*#avatar1 {
-	padding:5%;
-	float: left;
+
+body {
+	background: grey;
 }
 
-#avatar2 {
-	float: right;
-	padding: 5%;
+.text {
+	text-align: center;
 }
-*/
+
+.leftPanel, .emptySpace, .rightPanel {
+	float:left; 
+}
 
 .leftPanel {
-	width: 22%;
-	height: 500px;
-	float: left;
-}
-
-.emptySpace {
-	margin: auto;
-	background: green;
-	height: 500px;
-	width: 50%;
-	padding: 10px;
-	float: left;
+	width: 25%;
 }
 
 .rightPanel {
-	float: left;
-	width: 22%;
-	height: 500px;
+	width: 25%;
+}
+
+.emptySpace {
+	background: green;
+}
+
+#avatar1 {
+	padding: 20%;
+}
+
+#avatar2 {
+	padding: 20%;
+}
+
+#user1, #user2 {
+	text-align:  left;
+	font-size: 20px;
 
 }
+
 
 footer {
-	float: right;
+	text-align: center;
+	position: fixed;
+	height: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin-bottom: 0px; 
 }
-

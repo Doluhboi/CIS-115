@@ -1,8 +1,14 @@
 window.onload = function() {
 
+	/* On page load, the following will be executed
+	set clock value
+	generate two random avatar pictures
+	ask users for names
+	*/
+
 	// clock
 	let now = new Date();
-	let ampm = "am";
+	let ampm = "AM";
 
 	h = now.getHours();
 	m = now.getMinutes();
@@ -10,7 +16,7 @@ window.onload = function() {
 	
 	if(h>= 12){
 		if(h>12) h -= 12;
-		ampm= 'pm';
+		ampm= 'PM';
 	}
 
 	if(m<10) m= '0'+m;
@@ -22,7 +28,7 @@ window.onload = function() {
 	t.appendChild(tVal)
 
 	//avatars
-	let avatars = [
+	let avatars = ["/home/kyle/CIS-115/Assignment1/images/iq.jpg",
 	"/home/kyle/CIS-115/Assignment1/images/sledge.jpg","/home/kyle/CIS-115/Assignment1/images/jager.jpg",
 	"/home/kyle/CIS-115/Assignment1/images/castle.jpg","/home/kyle/CIS-115/Assignment1/images/fuze.jpg"];
 	let rand1 = avatars[Math.floor(Math.random() * avatars.length)];
@@ -35,25 +41,18 @@ window.onload = function() {
 	let avatar2 = document.querySelector("#avatar2");
 	avatar2.src = rand2;
 
+
 	//get users info
-	let user1 = "kyle" //prompt("User ones name: ");
+	let userName = prompt("User 1 name: ");
+	let ul = document.querySelector("#user1");
+	let user1Id = document.createElement("ul");
+	user1Id.innerHTML = 'Player 1: '+userName.toUpperCase();
+	ul.appendChild(user1Id);
 
-	let user2 = "batman" //prompt("User twos name: ");
-
-	// let user1Tag = document.querySelector("user1");
-	// let avatar1Name = document.createElement("ul");
-	// avatar1Name.innerHTML = user1;
-	// user1Tag.appendChild(avatar1Name);
-
-	// let user2Tag = document.querySelector("user2");
-	// let avatar2Name = document.createElement("ul");
-	// avatar2Name.innerHTML = user2;
-	// user2Tag.appendChild(avatar2Name);
-
-
-
-
-
-
+	userName = prompt("User 2 name: ");
+	ul = document.querySelector("#user2");
+	let user2Id = document.createElement("ul");
+	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
+	ul.appendChild(user2Id);
 
 }
