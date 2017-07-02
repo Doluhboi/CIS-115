@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head lang = "en">
+		<meta charset="utf-8">
+		<script type="text/javascript" src='myCode.js'></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Kyle Bennett - CIS 115 - Summer 17</title>
+	</head>
+
+	<body>
+		<!-- Header section with my name an assignments -->
+		<header>
+			<div id="topMenu" >
+				<span>Kyle Bennett </span>
+				<nav id="folders"> 
+					<a href="#">assign1</a>
+					<a href="#">assign2</a>
+					<a href="#">assign3</a>
+					<a href="#">assign4</a>
+					<a href="#">assign5</a>
+					<a href="#">assign6</a>
+					<a href="#">assign7</a>
+					<a href="#">css</a>
+					<a href="#">fp</a>
+					<a href="#">images</a>
+				</nav> 
+			</div>
+		</header>
+
+		<main> <!-- Main section with text, images and users -->
+			<div style="text-align: center;">
+				<h1 id="currentLevel">Welcome!</h1>
+				
+			</div>
+
+			<div id="gameCode">
+				<h3>Do you have a game code?</h2>
+				<!-- <div> -->
+					<input type="text" id="gcInput" placeholder="e.g. GC_X"> 
+					<button id="gcBtn">Add!</button>
+				<!-- </div> -->
+
+			</div>
+
+			<div id="levelSelection">
+				<h3>Level Selection:</h3>
+				<select id="lvl">
+					<option>--Start!--</option>
+
+				</select>
+				<button id="confirmBtn">Confirm</button>
+			</div>
+
+			<div id="reset"> 
+				<h3>Clear the game history</h3>
+				<button id="resetBtn">Reset the Game!</button>
+			</div>
+
+			
+			<div id="leftPanel">
+				<img id="avatar1">	
+				<ul id="user1">	</ul>
+			</div>
+					
+			<div id="emptySpace" style="width: 50%; height: 500px;"></div>
+
+			<div id="rightPanel">
+				<img id="avatar2">
+				<ul id="user2"> </ul>
+			</div>
+		</main>
+						
+		<footer> <!-- Time -->
+			<span id="time"></span>
+		</footer>
+	</body>
+</html>
