@@ -7,26 +7,26 @@ window.onload = function() {
 	*/
 
 	// clock
-	setTimeout(updateTime, 500);
-	// let now = new Date();
-	// let ampm = "AM";
-
-	// h = now.getHours();
-	// m = now.getMinutes();
-	// s = now.getSeconds();
 	
-	// if(h>= 12){
-	// 	if(h>12) h -= 12;
-	// 	ampm= 'PM';
-	// }
+	let now = new Date();
+	let ampm = "AM";
 
-	// if(m<10) m= '0'+m;
-	// if(s<10) s= '0'+s;
-	// let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
-	// let t = document.querySelector("#time");
-	// let tVal = document.createElement("span");
-	// tVal.innerHTML = dateTime;
-	// t.appendChild(tVal);
+	h = now.getHours();
+	m = now.getMinutes();
+	s = now.getSeconds();
+	
+	if(h>= 12){
+		if(h>12) h -= 12;
+		ampm= 'PM';
+	}
+
+	if(m<10) m= '0'+m;
+	if(s<10) s= '0'+s;
+	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
+	let t = document.querySelector("#time");
+	let tVal = document.createElement("span");
+	tVal.innerHTML = dateTime;
+	t.appendChild(tVal);
 
 	//avatars
 	let avatars = ["/home/kyle/CIS-115/Assignment1/images/iq.jpg",
@@ -61,6 +61,7 @@ window.onload = function() {
 
 	// create a object 'code'
 	let obj = {};
+	let objArray = [];
 	for(let i = 1; i<10;i++){
 		obj["GC_"+i] = "Level-"+i;
 	}
@@ -75,6 +76,8 @@ window.onload = function() {
 
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
+
+	//console.log(obj["GC_9"]);
 
 
 }
@@ -92,33 +95,48 @@ function confirmInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
 	currentInfo.innerHTML = newInfo.value;
+	// let obj = {};
+	// let objArray = [];
+	// let x;
+	// for(let i = 1; i<10;i++){
+	// 	x = "GC_" + i;
+	// 	obj[x] = "Level-"+i;
+	// 	objArray.push(obj[x]);
+	// }
+	//alert(obj["GC_1"]);
+	
+
+	
+
 }
 
 function resetInfo(){
-	let currentInfo = document.querySelector("#currentLevel");
+	let currentInfo = document.querySelector("#lvl");
 	let options = document.querySelector("#option");
+	alert(currentInfo[0]);
 
 }
 
-function updateTime(){
-	let now = new Date();
-	let ampm = "AM";
+// function updateTime(){
+// 	let now = new Date();
+// 	let ampm = "AM";
 
-	h = now.getHours();
-	m = now.getMinutes();
-	s = now.getSeconds();
+// 	h = now.getHours();
+// 	m = now.getMinutes();
+// 	s = now.getSeconds();
 	
-	if(h>= 12){
-		if(h>12) h -= 12;
-		ampm= 'PM';
-	}
+// 	if(h>= 12){
+// 		if(h>12) h -= 12;
+// 		ampm= 'PM';
+// 	}
 
-	if(m<10) m= '0'+m;
-	if(s<10) s= '0'+s;
-	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
-	let t = document.querySelector("#time");
-	let tVal = document.createElement("span");
-	tVal.innerHTML = dateTime;
-	t.appendChild(tVal);
-
-}
+// 	if(m<10) m= '0'+m;
+// 	if(s<10) s= '0'+s;
+// 	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
+// 	let t = document.querySelector("#time");
+// 	let tVal = document.createElement("span");
+// 	tVal = "";
+// 	tVal.innerHTML = dateTime;
+// 	t.appendChild(tVal);
+	
+// }
