@@ -7,26 +7,8 @@ window.onload = function() {
 	*/
 
 	// clock
-	
-	let now = new Date();
-	let ampm = "AM";
-
-	h = now.getHours();
-	m = now.getMinutes();
-	s = now.getSeconds();
-	
-	if(h>= 12){
-		if(h>12) h -= 12;
-		ampm= 'PM';
-	}
-
-	if(m<10) m= '0'+m;
-	if(s<10) s= '0'+s;
-	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
-	let t = document.querySelector("#time");
-	let tVal = document.createElement("span");
-	tVal.innerHTML = dateTime;
-	t.appendChild(tVal);
+	updateTime();
+	setInterval(updateTime, 500);
 
 	//avatars
 	let avatars = ["/home/kyle/CIS-115/Assignment1/images/iq.jpg",
@@ -104,10 +86,6 @@ function confirmInfo(){
 	// 	objArray.push(obj[x]);
 	// }
 	//alert(obj["GC_1"]);
-	
-
-	
-
 }
 
 function resetInfo(){
@@ -117,26 +95,22 @@ function resetInfo(){
 
 }
 
-// function updateTime(){
-// 	let now = new Date();
-// 	let ampm = "AM";
+function updateTime(){
+	let now = new Date();
+	let ampm = "AM";
 
-// 	h = now.getHours();
-// 	m = now.getMinutes();
-// 	s = now.getSeconds();
+	h = now.getHours();
+	m = now.getMinutes();
+	s = now.getSeconds();
 	
-// 	if(h>= 12){
-// 		if(h>12) h -= 12;
-// 		ampm= 'PM';
-// 	}
+	if(h>= 12){
+		if(h>12) h -= 12;
+		ampm= 'PM';
+	}
 
-// 	if(m<10) m= '0'+m;
-// 	if(s<10) s= '0'+s;
-// 	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
-// 	let t = document.querySelector("#time");
-// 	let tVal = document.createElement("span");
-// 	tVal = "";
-// 	tVal.innerHTML = dateTime;
-// 	t.appendChild(tVal);
-	
-// }
+	if(m<10) m= '0'+m;
+	if(s<10) s= '0'+s;
+	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
+	let t = document.querySelector("#time");
+	t.innerHTML = dateTime;	
+}
