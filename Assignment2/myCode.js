@@ -24,7 +24,6 @@ window.onload = function() {
 	let avatar2 = document.querySelector("#avatar2");
 	avatar2.src = rand2;
 
-
 	//get users info
 	//let userName = prompt("User 1 name: ");
 	let userName = "kyle"; 					// for dev
@@ -40,14 +39,6 @@ window.onload = function() {
 	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
 	ul.appendChild(user2Id);
 
-
-	// create a object 'code'
-	let obj = {};
-	let objArray = [];
-	for(let i = 1; i<10;i++){
-		obj["GC_"+i] = "Level-"+i;
-	}
-
 	// add button feature
 	let btn = document.querySelector("#gcBtn");
 	btn.addEventListener("click", addGC);
@@ -59,39 +50,39 @@ window.onload = function() {
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
 
-	//console.log(obj["GC_9"]);
-
-
 }
 
 function addGC(){
 	let opt = document.querySelector("#lvl");
 	let input = document.querySelector("#gcInput");
 	let newOpt = document.createElement("option");
-	newOpt.innerHTML = input.value;
-	opt.appendChild(newOpt);
-	input.value = '';
+
+	if(obj.hasOwnProperty(input.value)){
+		newOpt.innerHTML = input.value;
+		opt.appendChild(newOpt);
+		input.value = '';
+	}
+	else
+		alert("Not a valid code!");
+
 }
 
 function confirmInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
-	currentInfo.innerHTML = newInfo.value;
-	// let obj = {};
-	// let objArray = [];
-	// let x;
-	// for(let i = 1; i<10;i++){
-	// 	x = "GC_" + i;
-	// 	obj[x] = "Level-"+i;
-	// 	objArray.push(obj[x]);
-	// }
-	//alert(obj["GC_1"]);
+	currentInfo.innerHTML = obj[newInfo.value] +" :: " + newInfo.value;
 }
 
 function resetInfo(){
-	let currentInfo = document.querySelector("#lvl");
-	let options = document.querySelector("#option");
-	alert(currentInfo[0]);
+	let currentInfo = document.querySelector("#currentLevel");
+	let newInfo = document.querySelector("#lvl");
+
+	currentInfo.innerHTML = "Welcome!";
+
+	let len = newInfo.options.length;
+	for(let i = 1; i<len; i++){
+		newInfo[i] = null;
+	}
 
 }
 
@@ -114,3 +105,11 @@ function updateTime(){
 	let t = document.querySelector("#time");
 	t.innerHTML = dateTime;	
 }
+
+// creates object obj with gamecodes and values
+let obj = {};
+for(let i = 1; i<10;i++){
+	obj["GC_"+i] = "Level-"+i;
+}
+
+
