@@ -2,12 +2,13 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4ViWmBlruSp7NaavnfNVwsUbPyCpIa1I"> </script>
 		<script type="text/javascript" src='script.js'></script>
 		<title>Notebook</title>
 	</head>
 	<body>
 		<h1 id="title">Notebook</h1>
-		<p class="textBlue">Please enter the items you want to buy </p>
+		<p class="textBlue">What would you like to take notes on?</p>
 		<hr>
 		<div class="container">
 			<input id="txtItem" type="text" placeholder="please enter item name">
@@ -16,8 +17,10 @@
 			</select>
 			<button id=btnSubmit>Add</button>
 		</div>
-		<ul id="shoppingList">
+		<ul id="notesList">
 
 		</ul>
+
+		<div id="map" style="width: 400px;height: 400px;border:solid 2px green"></div>
 	</body>
 </html>

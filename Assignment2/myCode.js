@@ -56,11 +56,25 @@ function addGC(){
 	let opt = document.querySelector("#lvl");
 	let input = document.querySelector("#gcInput");
 	let newOpt = document.createElement("option");
+	
+	// for(let i=0; i< opt.options.length; i++){
+	// 	if (input== opt.options[i].text)
+	// 	{
+	// 		console.log('err');
+	// 		break;
+	// 	}
+	// }
 
 	if(obj.hasOwnProperty(input.value)){
-		newOpt.innerHTML = input.value;
-		opt.appendChild(newOpt);
-		input.value = '';
+		for(let i = 0; i<opt.options.length; i++){
+			if(input.value.text == opt.options[i].text){
+				break
+			} else {
+				newOpt.innerHTML = input.value;
+				opt.appendChild(newOpt);
+				
+			}
+		}
 	}
 	else
 		alert("Not a valid code!");
@@ -70,20 +84,21 @@ function addGC(){
 function confirmInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
-	currentInfo.innerHTML = obj[newInfo.value] +" :: " + newInfo.value;
+	if(newInfo.value == "--Start!--")
+		alert("Please select a level");
+	else
+		currentInfo.innerHTML = obj[newInfo.value] +" :: " + newInfo.value;
 }
 
 function resetInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
+	let d = document.createElement("option");
+	d.innerHTML = "--Start!--";
 
 	currentInfo.innerHTML = "Welcome!";
-
-	let len = newInfo.options.length;
-	for(let i = 1; i<len; i++){
-		newInfo[i] = null;
-	}
-
+	newInfo.innerHTML = '';
+	newInfo.appendChild(d);
 }
 
 function updateTime(){
