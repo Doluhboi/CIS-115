@@ -79,7 +79,9 @@ function addGC(){
 function changeInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
-	currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
+	let dOpt = document.querySelector("#defaultOpt");
+	if(newInfo.value != dOpt.value)
+		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 }
 
 
