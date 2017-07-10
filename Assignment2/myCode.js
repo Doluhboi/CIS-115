@@ -42,10 +42,6 @@ window.onload = function() {
 	let btn = document.querySelector("#gcBtn");
 	btn.addEventListener("click", addGC);
 
-	// confirm button
-	let btn2 = document.querySelector("#confirmBtn");
-	btn2.addEventListener("click", confirmInfo);
-
 	// reset info button
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
@@ -79,14 +75,13 @@ function addGC(){
 
 }
 
-function confirmInfo(){
+
+function changeInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
-	if(newInfo.value == "--Start!--")
-		alert("Please select a level");
-	else
-		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
+	currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 }
+
 
 function resetInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
