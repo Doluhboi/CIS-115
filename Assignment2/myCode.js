@@ -80,7 +80,7 @@ function changeInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
 	let dOpt = document.querySelector("#defaultOpt");
-	if(newInfo.value != dOpt.value)
+	if(newInfo.value != "--Start!--")
 		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 }
 
