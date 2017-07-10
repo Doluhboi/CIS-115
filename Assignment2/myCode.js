@@ -11,9 +11,8 @@ window.onload = function() {
 	setInterval(updateTime, 500);
 
 	//avatars
-	let avatars = ["/home/kyle/CIS-115/Assignment1/images/iq.jpg",
-	"/home/kyle/CIS-115/Assignment1/images/sledge.jpg","/home/kyle/CIS-115/Assignment1/images/jager.jpg",
-	"/home/kyle/CIS-115/Assignment1/images/castle.jpg","/home/kyle/CIS-115/Assignment1/images/fuze.jpg"];
+	let avatars = ["images/iq.jpg", "images/sledge.jpg","images/jager.jpg",
+	"images/castle.jpg","images/fuze.jpg"];
 	let rand1 = avatars[Math.floor(Math.random() * avatars.length)];
 	let rand2 = avatars[Math.floor(Math.random() * avatars.length)];
 	while (rand1 == rand2){
@@ -25,15 +24,15 @@ window.onload = function() {
 	avatar2.src = rand2;
 
 	//get users info
-	//let userName = prompt("User 1 name: ");
-	let userName = "kyle"; 					// for dev
+	let userName = prompt("User 1 name: ");
+	//let userName = "kyle"; 					// for dev
 	let ul = document.querySelector("#user1");
 	let user1Id = document.createElement("ul");
 	user1Id.innerHTML = 'Player 1: '+userName.toUpperCase();
 	ul.appendChild(user1Id);
 
-	//userName = prompt("User 2 name: ");
-	userName = "batman"   	// for dev
+	userName = prompt("User 2 name: ");
+	//userName = "batman"   	// for dev
 	ul = document.querySelector("#user2");
 	let user2Id = document.createElement("ul");
 	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
@@ -43,10 +42,11 @@ window.onload = function() {
 	let btn = document.querySelector("#gcBtn");
 	btn.addEventListener("click", addGC);
 
-	// reset info button
+	// confirm button
 	let btn2 = document.querySelector("#confirmBtn");
 	btn2.addEventListener("click", confirmInfo);
 
+	// reset info button
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
 
@@ -56,25 +56,23 @@ function addGC(){
 	let opt = document.querySelector("#lvl");
 	let input = document.querySelector("#gcInput");
 	let newOpt = document.createElement("option");
-	
-	// for(let i=0; i< opt.options.length; i++){
-	// 	if (input== opt.options[i].text)
-	// 	{
-	// 		console.log('err');
-	// 		break;
-	// 	}
-	// }
+	let x = input.value;
 
-	if(obj.hasOwnProperty(input.value)){
-		for(let i = 0; i<opt.options.length; i++){
-			if(input.value.text == opt.options[i].text){
-				break
-			} else {
-				newOpt.innerHTML = input.value;
-				opt.appendChild(newOpt);
-				
+	// flag to check if GameCodes are unique to options bar
+	let flag = false;
+	if(obj.hasOwnProperty(input.value)){  								// checks user input to GameCodes object for match
+		for(let i = 0; i<opt.options.length; i++){  					// checks all values in options bar
+			if(input.value == opt.options[i].value){
+				alert(`Game Code: ${input.value} already added!`);
+				flag = true;
+				break;
 			}
 		}
+		if(flag == false){
+			newOpt.innerHTML = input.value;
+			opt.appendChild(newOpt);
+		}
+
 	}
 	else
 		alert("Not a valid code!");
@@ -87,7 +85,7 @@ function confirmInfo(){
 	if(newInfo.value == "--Start!--")
 		alert("Please select a level");
 	else
-		currentInfo.innerHTML = obj[newInfo.value] +" :: " + newInfo.value;
+		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 }
 
 function resetInfo(){
@@ -103,22 +101,8 @@ function resetInfo(){
 
 function updateTime(){
 	let now = new Date();
-	let ampm = "AM";
-
-	h = now.getHours();
-	m = now.getMinutes();
-	s = now.getSeconds();
-	
-	if(h>= 12){
-		if(h>12) h -= 12;
-		ampm= 'PM';
-	}
-
-	if(m<10) m= '0'+m;
-	if(s<10) s= '0'+s;
-	let dateTime = now.toLocaleDateString()+ ' ' + h + ':' + m + ':' + s + ' ' + ampm;
 	let t = document.querySelector("#time");
-	t.innerHTML = dateTime;	
+	t.innerHTML = now;	
 }
 
 // creates object obj with gamecodes and values
