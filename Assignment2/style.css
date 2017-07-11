@@ -28,6 +28,7 @@ body {
 
 #leftPanel, #emptySpace, #rightPanel {
 	float:left; 
+	text-align: center;
 }
 
 #leftPanel, #rightPanel {
@@ -67,4 +68,5 @@ footer {
 	width: 33%;
 	height: 100px;
 	float: left;
+	text-align: center;
 }

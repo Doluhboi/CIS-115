@@ -24,15 +24,15 @@ window.onload = function() {
 	avatar2.src = rand2;
 
 	//get users info
-	let userName = prompt("User 1 name: ");
-	//let userName = "kyle"; 					// for dev
+	//let userName = prompt("User 1 name: ");
+	let userName = "kyle"; 					// for dev
 	let ul = document.querySelector("#user1");
 	let user1Id = document.createElement("ul");
 	user1Id.innerHTML = 'Player 1: '+userName.toUpperCase();
 	ul.appendChild(user1Id);
 
-	userName = prompt("User 2 name: ");
-	//userName = "batman"   	// for dev
+	//userName = prompt("User 2 name: ");
+	userName = "batman"   	// for dev
 	ul = document.querySelector("#user2");
 	let user2Id = document.createElement("ul");
 	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
