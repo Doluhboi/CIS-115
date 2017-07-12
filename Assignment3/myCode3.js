@@ -24,15 +24,15 @@ window.onload = function() {
 	avatar2.src = rand2;
 
 	//get users info
-	let userName = prompt("User 1 name: ");
-	//let userName = "kyle"; 					// for dev
+	//let userName = prompt("User 1 name: ");
+	let userName = "kyle"; 					// for dev
 	let ul = document.querySelector("#user1");
 	let user1Id = document.createElement("ul");
 	user1Id.innerHTML = 'Player 1: '+userName.toUpperCase();
 	ul.appendChild(user1Id);
 
-	userName = prompt("User 2 name: ");
-	//userName = "batman"   	// for dev
+	//userName = prompt("User 2 name: ");
+	userName = "batman"   	// for dev
 	ul = document.querySelector("#user2");
 	let user2Id = document.createElement("ul");
 	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
@@ -45,6 +45,16 @@ window.onload = function() {
 	// reset info button
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
+
+	//referances to canvas
+	can = document.querySelector("#myCanvas");
+	ctx = can.getContext("2d");
+
+	//
+	let X = Math.floor(Math.random() * can.width);
+	let R = Math.floor(Math.random() * 100);
+	console.log(X);
+	console.log(R)
 
 }
 
@@ -94,6 +104,10 @@ function resetInfo(){
 	currentInfo.innerHTML = "Welcome!";
 	newInfo.innerHTML = '';
 	newInfo.appendChild(d);
+
+	let input = document.querySelector("#gcInput");
+	input.value = "";
+
 }
 
 function updateTime(){
@@ -102,10 +116,21 @@ function updateTime(){
 	t.innerHTML = now;	
 }
 
+function RndCircle(){
+	let X = Math.floor(Math.random() * can.width);
+	let Y = Math.floor(Math.random() * can.height);
+	let R = Math.floor(Math.random() * 100);
+	ctx.arc(X,Y,R,0,Math.PI*2)
+}
+
 // creates object obj with gamecodes and values
 let obj = {};
 for(let i = 1; i<10;i++){
 	obj["GC_"+i] = "Level-"+i;
 }
+
+//global variables
+let ctx;
+let can;
 
 
