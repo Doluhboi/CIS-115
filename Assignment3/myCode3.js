@@ -53,8 +53,12 @@ window.onload = function() {
 	//
 	let X = Math.floor(Math.random() * can.width);
 	let R = Math.floor(Math.random() * 100);
-	console.log(X);
-	console.log(R)
+	//console.log(X);
+	//console.log(R);
+	console.log(can.width);
+
+	RndCircle();
+
 
 }
 
@@ -120,7 +124,14 @@ function RndCircle(){
 	let X = Math.floor(Math.random() * can.width);
 	let Y = Math.floor(Math.random() * can.height);
 	let R = Math.floor(Math.random() * 100);
-	ctx.arc(X,Y,R,0,Math.PI*2)
+	ctx.arc(X,Y,R,0,Math.PI*2);
+	let Red = Math.floor(Math.random() * 255);
+	let Green = Math.floor(Math.random() * 255);
+	let Blue = Math.floor(Math.random() * 255);
+	let Alpha = Math.random();
+	let rgba = `rgba(${Red},${Green},${Blue},${Alpha})`;
+	ctx.fillStyle = rgba;
+	ctx.stroke();
 }
 
 // creates object obj with gamecodes and values
