@@ -1,0 +1,68 @@
+header, .text, footer, #user1, #user2 {
+	font-family:  "Comic Sans MS", cursive, sans-serif;
+}
+
+header {
+	background: green;
+	padding: 20px;
+	font-size: 20px;
+	overflow: auto;
+}
+
+header span {
+	float: left;
+}
+
+header nav {
+	float: right;
+}
+
+
+body {
+	background: grey;
+}
+
+.text {
+	text-align: center;
+}
+
+.leftPanel, .emptySpace, .rightPanel {
+	float:left; 
+}
+
+.leftPanel {
+	width: 25%;
+}
+
+.rightPanel {
+	width: 25%;
+}
+
+.emptySpace {
+	background: green;
+}
+
+#avatar1 {
+	padding: 20%;
+}
+
+#avatar2 {
+	padding: 20%;
+}
+
+#user1, #user2 {
+	text-align:  left;
+	font-size: 20px;
+
+}
+
+
+footer {
+	text-align: center;
+	position: fixed;
+	height: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin-bottom: 0px; 
+}

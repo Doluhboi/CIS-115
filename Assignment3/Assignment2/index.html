@@ -2,7 +2,7 @@
 <html>
 	<head lang = "en">
 		<meta charset="utf-8">
-		<script type="text/javascript" src='myCode3.js'></script>
+		<script type="text/javascript" src='myCode.js'></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>Kyle Bennett - CIS 115 - Summer 17</title>
 	</head>
@@ -13,9 +13,9 @@
 			<div id="topMenu" >
 				<span>Kyle Bennett </span>
 				<nav id="folders"> 
-					<a href="file:///home/kyle/CIS-115/Assignment1/index.html">assign1</a>
-					<a href="/Assignment2/index.html">assign2</a>
-					<a href="file:///home/kyle/CIS-115/Assignment3/index.html">assign3</a>
+					<a href="#">assign1</a>
+					<a href="#">assign2</a>
+					<a href="#">assign3</a>
 					<a href="#">assign4</a>
 					<a href="#">assign5</a>
 					<a href="#">assign6</a>
@@ -43,7 +43,7 @@
 
 			<div id="levelSelection">
 				<h3>Level Selection:</h3>
-				<select id="lvl" >
+				<select id="lvl" onchange="changeInfo()">
 					<option id="defaultOpt">--Start!--</option>
 
 				</select>
@@ -57,20 +57,19 @@
 			
 			<div id="leftPanel">
 				<img id="avatar1">	
-				<a id="user1">	</a>
+				<ul id="user1">	</ul>
 			</div>
 					
-			<div id="canvasContainer" width = "75%" height = "500">
-				<canvas id="myCanvas" width="100%" height="500">Your browser does not support canvas</canvas>
-			</div>
+			<div id="emptySpace" style="width: 50%; height: 500px;"></div>
 
 			<div id="rightPanel">
 				<img id="avatar2">
-				<a id="user2"> </a>
-			</div>
-			<div id="timeDiv">
-				<span id="time"></span>
+				<ul id="user2"> </ul>
 			</div>
 		</main>
+						
+		<footer> <!-- Time -->
+			<span id="time">Hello</span>
+		</footer>
 	</body>
 </html>

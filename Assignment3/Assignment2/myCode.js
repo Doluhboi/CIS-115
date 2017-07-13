@@ -1,14 +1,3 @@
-// creates global object obj with gamecodes and values
-let obj = {};
-for(let i = 1; i<10;i++){
-	obj["GC_"+i] = "Level-"+i;
-}
-
-//global variables
-let ctx;
-let can;
-
-
 window.onload = function() {
 
 	/* On page load, the following will be executed
@@ -35,19 +24,19 @@ window.onload = function() {
 	avatar2.src = rand2;
 
 	//get users info
-	//let userName = prompt("User 1 name: ");
-	let userName = "kyle"; 					// for dev
-	let aTag = document.querySelector("#user1");
-	let user1Id = document.createElement("a");
+	let userName = prompt("User 1 name: ");
+	//let userName = "kyle"; 					// for dev
+	let ul = document.querySelector("#user1");
+	let user1Id = document.createElement("ul");
 	user1Id.innerHTML = 'Player 1: '+userName.toUpperCase();
-	aTag.appendChild(user1Id);
+	ul.appendChild(user1Id);
 
-	//userName = prompt("User 2 name: ");
-	userName = "batman"   	// for dev
-	aTag = document.querySelector("#user2");
-	let user2Id = document.createElement("a");
+	userName = prompt("User 2 name: ");
+	//userName = "batman"   	// for dev
+	ul = document.querySelector("#user2");
+	let user2Id = document.createElement("ul");
 	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
-	aTag.appendChild(user2Id);
+	ul.appendChild(user2Id);
 
 	// add button feature
 	let btn = document.querySelector("#gcBtn");
@@ -56,28 +45,6 @@ window.onload = function() {
 	// reset info button
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
-
-	// change info displayed when user selects an option
-	let cngInfo = document.querySelector("#lvl");
-	cngInfo.addEventListener("change", changeInfo);
-
-	//referances to canvas
-	can = document.querySelector("#myCanvas");
-	ctx = can.getContext("2d");
-
-	// function to make canvis fill container div
-	fitCanvas(can);
-
-	// this extra credit works, but not cool enough
-	// ctx.font = "30px Comic Sans MS";
-	// ctx.fillText("Game is Loading...",can.width/2,can.height/2);
-
-	//this has weird bug
-	//setInterval(loadingText,1000);
-
-	// draw circle
-	setInterval(RndCircle,1000);
-
 
 }
 
@@ -112,7 +79,7 @@ function addGC(){
 function changeInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
-
+	let dOpt = document.querySelector("#defaultOpt");
 	if(newInfo.value != "--Start!--")
 		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 }
@@ -127,10 +94,6 @@ function resetInfo(){
 	currentInfo.innerHTML = "Welcome!";
 	newInfo.innerHTML = '';
 	newInfo.appendChild(d);
-
-	let input = document.querySelector("#gcInput");
-	input.value = "";
-
 }
 
 function updateTime(){
@@ -139,50 +102,10 @@ function updateTime(){
 	t.innerHTML = now;	
 }
 
-function RndCircle(){
-	ctx.beginPath();
-	let X = Math.floor(Math.random() * can.width);
-	let Y = Math.floor(Math.random() * can.height);
-	let R = Math.floor(Math.random() * 100);
-	ctx.arc(X,Y,R,0,Math.PI*2);
-	let Red = Math.floor(Math.random() * 255);
-	let Green = Math.floor(Math.random() * 255);
-	let Blue = Math.floor(Math.random() * 255);
-	let Alpha = 15/R;
-	ctx.fillStyle = `rgba(${Red},${Green},${Blue},${Alpha}`;
-	ctx.fill();
-	ctx.stroke();
-	ctx.closePath();
+// creates object obj with gamecodes and values
+let obj = {};
+for(let i = 1; i<10;i++){
+	obj["GC_"+i] = "Level-"+i;
 }
-
-
-//canvas fill to size
-function fitCanvas(canvas){
-	can.style.width='100%';
-	can.style.height='100%';
- 	can.width  = canvas.offsetWidth;
- 	can.height = canvas.offsetHeight;
-}
-
-let count = 0;
-function loadingText(){
-	let str = "Game is Loading";
-	ctx.font = "30px Comic Sans MS";
-	
-		if(count == 0){
-			ctx.fillText("Game is Loading.",can.width/2,can.height/2);
-			count++;
-		}
-		if(count == 1){
-			ctx.fillText("Game is Loading..",can.width/2,can.height/2);
-			count++;
-		}
-		if(count == 2){
-			ctx.fillText("Game is Loading.",can.width/2,can.height/2);
-			count = 0;
-		}
-	
-}
-
 
 
