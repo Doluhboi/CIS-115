@@ -1,3 +1,14 @@
+// creates global object obj with gamecodes and values
+let obj = {};
+for(let i = 1; i<10;i++){
+	obj["GC_"+i] = "Level-"+i;
+}
+
+//global variables
+let ctx;
+let can;
+
+
 window.onload = function() {
 
 	/* On page load, the following will be executed
@@ -49,15 +60,13 @@ window.onload = function() {
 	//referances to canvas
 	can = document.querySelector("#myCanvas");
 	ctx = can.getContext("2d");
+	// function to make canvis fill container div
+	fitCanvas(can);
+	ctx.font = "30px Comic Sans MS";
+	ctx.fillText("Game is Loading...",can.width/2,can.height/2);
 
-	//
-	let X = Math.floor(Math.random() * can.width);
-	let R = Math.floor(Math.random() * 100);
-	//console.log(X);
-	//console.log(R);
-	console.log(can.width);
-
-	RndCircle();
+	// draw circle
+	setInterval(RndCircle,1000);
 
 
 }
@@ -121,6 +130,7 @@ function updateTime(){
 }
 
 function RndCircle(){
+	ctx.beginPath();
 	let X = Math.floor(Math.random() * can.width);
 	let Y = Math.floor(Math.random() * can.height);
 	let R = Math.floor(Math.random() * 100);
@@ -128,20 +138,25 @@ function RndCircle(){
 	let Red = Math.floor(Math.random() * 255);
 	let Green = Math.floor(Math.random() * 255);
 	let Blue = Math.floor(Math.random() * 255);
-	let Alpha = Math.random();
-	let rgba = `rgba(${Red},${Green},${Blue},${Alpha})`;
-	ctx.fillStyle = rgba;
+	let Alpha = 15/R;
+	ctx.fillStyle = `rgba(${Red},${Green},${Blue},${Alpha}`;
+	ctx.fill();
 	ctx.stroke();
+	ctx.closePath();
 }
 
-// creates object obj with gamecodes and values
-let obj = {};
-for(let i = 1; i<10;i++){
-	obj["GC_"+i] = "Level-"+i;
+
+//canvas fill to size
+function fitCanvas(canvas){
+	can.style.width='100%';
+	can.style.height='100%';
+ 	can.width  = canvas.offsetWidth;
+ 	can.height = canvas.offsetHeight;
 }
 
-//global variables
-let ctx;
-let can;
+function loadingText(){
+	
+}
+
 
 
