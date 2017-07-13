@@ -10,7 +10,6 @@ let can;
 
 
 window.onload = function() {
-
 	/* On page load, the following will be executed
 	set clock value
 	generate two random avatar pictures
