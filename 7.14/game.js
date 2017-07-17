@@ -6,6 +6,9 @@ window.onload = function () {
     canvas = document.querySelector('#canvas');
     ctx = canvas.getContext('2d');
 
+    let vid = document.querySelector("#myVideo");
+    vid.play();
+
 
 
 
