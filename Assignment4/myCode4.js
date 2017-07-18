@@ -8,9 +8,9 @@ for(let i = 1; i<10;i++){
 let ctx;
 let can;
 let cir_X = 300;
-let dir_X = 1;
 let cir_Y = 300;
 let R = 20;
+let dir_X = 1;
 let dir_Y = 1;
 let bar_X =20;
 let bar_Y =150;
@@ -18,6 +18,7 @@ let bar_W = 30;
 let bar_H = 100;
 let score = 0;
 let loading = setInterval(RndCircle,1000);
+localStorage["curScore"]=0;
 
 
 
@@ -210,29 +211,25 @@ function drawball(){
     }
 
     if(cir_X-R<0){
-    	gameOver();
+    	dir_X=0;
+    	dir_Y=0;
+    	alert("Game Over!")
     }
 
     if (cir_Y+R > can.height || cir_Y-R<0 ) {
         dir_Y*=-1
     }
 
-    if ((cir_X-R <= bar_W*1.66) && (cir_Y>bar_Y) && (cir_Y<bar_Y+bar_H)){
+    if ((cir_X-R <= bar_W*1.66) && (cir_Y>bar_Y && cir_Y<bar_Y+bar_H)){
         dir_X*=-1;
         score++;
+        bar_H -= 25;
+        localStorage["curScore"] += 1;
         console.log(score);
     }
 
-// hit box on bar
-
-
-// if(cir_X-R<= bar_W){
-//     dir_X*=-1
-// }
-    //cir_X = cir_X+5 //increasing object 5 pixels
-
-    cir_X+=2*dir_X; 
-    cir_Y+=3*dir_Y;
+    cir_X+=4*dir_X; 
+    cir_Y+=5*dir_Y;
 
     ctx.fill();
     ctx.closePath();
@@ -250,8 +247,4 @@ function drawbar(){
 function stopLoading(){
 	clearInterval(loading);
 	setInterval(startGame,17);
-}
-
-function gameOver(){
-	clearInterval(startGame);
 }
