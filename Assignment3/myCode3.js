@@ -34,15 +34,15 @@ window.onload = function() {
 	avatar2.src = rand2;
 
 	//get users info
-	//let userName = prompt("User 1 name: ");
-	let userName = "kyle"; 					// for dev
+	let userName = prompt("User 1 name: ");
+	//let userName = "kyle"; 					// for dev
 	let aTag = document.querySelector("#user1");
 	let user1Id = document.createElement("a");
 	user1Id.innerHTML = 'Player 1: '+userName.toUpperCase();
 	aTag.appendChild(user1Id);
 
-	//userName = prompt("User 2 name: ");
-	userName = "batman"   	// for dev
+	userName = prompt("User 2 name: ");
+	//userName = "batman"   	// for dev
 	aTag = document.querySelector("#user2");
 	let user2Id = document.createElement("a");
 	user2Id.innerHTML = 'Player 2: '+userName.toUpperCase();
@@ -66,13 +66,6 @@ window.onload = function() {
 
 	// function to make canvis fill container div
 	fitCanvas(can);
-
-	// this extra credit works, but not cool enough
-	// ctx.font = "30px Comic Sans MS";
-	// ctx.fillText("Game is Loading...",can.width/2,can.height/2);
-
-	//this has weird bug
-	//setInterval(loadingText,1000);
 
 	// draw circle
 	setInterval(RndCircle,1000);
@@ -150,7 +143,13 @@ function RndCircle(){
 	let Alpha = 15/R;
 	ctx.fillStyle = `rgba(${Red},${Green},${Blue},${Alpha}`;
 	ctx.fill();
-	ctx.stroke();
+	ctx.closePath();
+
+	//text
+	ctx.beginPath();
+	ctx.fillStyle = "black";
+	ctx.font = "30px Comic Sans MS";
+	ctx.fillText("Game is Loading...",230,250);
 	ctx.closePath();
 }
 
@@ -161,26 +160,6 @@ function fitCanvas(canvas){
 	can.style.height='100%';
  	can.width  = canvas.offsetWidth;
  	can.height = canvas.offsetHeight;
-}
-
-let count = 0;
-function loadingText(){
-	let str = "Game is Loading";
-	ctx.font = "30px Comic Sans MS";
-	
-		if(count == 0){
-			ctx.fillText("Game is Loading.",can.width/2,can.height/2);
-			count++;
-		}
-		if(count == 1){
-			ctx.fillText("Game is Loading..",can.width/2,can.height/2);
-			count++;
-		}
-		if(count == 2){
-			ctx.fillText("Game is Loading.",can.width/2,can.height/2);
-			count = 0;
-		}
-	
 }
 
 
