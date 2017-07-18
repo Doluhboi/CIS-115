@@ -1,0 +1,73 @@
+header, #text, #time, #user1, #user2 {
+	font-family:  "Comic Sans MS", cursive, sans-serif;
+}
+
+header {
+	background: green;
+	padding: 20px;
+	font-size: 20px;
+	overflow: auto;
+}
+
+header span {
+	float: left;
+}
+
+header nav {
+	float: right;
+}
+
+
+body {
+	background: grey;
+}
+
+#text {
+	text-align: center;
+}
+
+#leftPanel, #canvasContainer, #rightPanel {
+	float:left; 
+	text-align: center;
+}
+
+#leftPanel, #rightPanel {
+	width: 25%;
+}
+
+#canvasContainer {
+	background: white;
+	width: 50%;
+}
+
+#avatar1, #avatar2 {
+	display: block;
+	margin: auto;
+}
+
+#user1, #user2 {
+	text-align:  center;
+	font-size: 20px;
+
+}
+
+
+#timeDiv {
+	float: left;
+	text-align: center;
+	width: 100%;
+	height: 100px;
+}
+
+#time{
+	padding: 20px;
+}
+
+#gameCode , #levelSelection, #reset  {
+	width: 33%;
+	height: 100px;
+	float: left;
+	text-align: center;
+}
+
+

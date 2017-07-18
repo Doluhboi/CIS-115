@@ -62,6 +62,7 @@ function startGame(){
     drawball();
     drawbar();
 }
+
 function drawball(){
                 //clearing everything from canvas
     ctx.beginPath();
@@ -93,7 +94,7 @@ if(cir_X-R<= bar_W){
     dir_X*=-1
 }
     cir_X+=2*dir_X;  // cir_X = cir_X+5 increasing object 5 pixels
-    cir_Y+=8*dir_Y;
+    cir_Y+=2*dir_Y;
     ctx.fill();
     ctx.closePath();
 
