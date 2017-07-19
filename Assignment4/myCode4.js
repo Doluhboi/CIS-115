@@ -62,7 +62,7 @@ window.onload = function() {
 	if(localStorage["user2ID"] == null){
 		localStorage["user2ID"] = prompt("User 2 name: ");
 		user2ID.innerHTML = 'Player 2: '+localStorage["user2ID"];
-		a2Tag.appendChild(userID);
+		a2Tag.appendChild(user2ID);
 	} else{
 		user2ID.innerHTML = 'Player 2: '+localStorage["user2ID"];
 		a2Tag.appendChild(user2ID);
@@ -222,12 +222,21 @@ function drawball(){
     }
 
     if(cir_X-R<0){
-    	dir_X=0;
-    	dir_Y=0;
     	if(score > parseInt(localStorage["bestScore"])){    		
     		localStorage["bestScore"] = score;	
     	}
     	bestTag.innerHTML = `Best Score: ${localStorage["bestScore"]}`;
+    	alert("Game Over");
+    	cir_X = 300;
+		cir_Y = 300;
+		dir_X = 1;
+		dir_Y = 1;
+		bar_X =20;
+		bar_Y =150;
+		bar_W = 10;
+		bar_H = 100;
+		score = 0;
+		scoreTag.innerHTML = "Score: 0";
     		
     }
 
