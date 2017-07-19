@@ -14,12 +14,12 @@ let dir_X = 1;
 let dir_Y = 1;
 let bar_X =20;
 let bar_Y =150;
-let bar_W = 30;
+let bar_W = 10;
 let bar_H = 100;
 let score = 0;
 let loading = setInterval(RndCircle,1000);
-localStorage["curScore"]=0;
-
+// let scoreTag = document.querySelector("#curScore");
+// let bestTag = document.querySelector("#bestScore");
 
 
 window.onload = function() {
@@ -87,11 +87,19 @@ window.onload = function() {
 	// function to make canvis fill container div
 	fitCanvas(can);
 
+	setTimeout(stopLoading, 30);
 
-	setTimeout(stopLoading, 3000);
 
-	// game
-	window.addEventListener("mousemove",mouseXY);
+	// set best score on page load
+	if(localStorage["bestScore"] == null){
+		localStorage["bestScore"] = 0;
+	}
+	let scoreTag = document.querySelector("#curScore");
+	let bestTag = document.querySelector("#bestScore");
+	bestTag.innerHTML = `Best Score: ${localStorage["bestScore"]}`;
+	scoreTag.innerHTML = "Score: 0";
+
+
 
 
 }
@@ -193,6 +201,7 @@ function startGame(){
     drawball();
     drawbar();
 }
+    
 
 function drawball(){
     //clearing everything from canvas
@@ -205,6 +214,8 @@ function drawball(){
     ctx.beginPath();
     ctx.fillStyle="blue";
     ctx.arc(cir_X, cir_Y,20,0,2*Math.PI);
+	let scoreTag = document.querySelector("#curScore");
+	let bestTag = document.querySelector("#bestScore");
 
     if (cir_X+R > can.width ) {
         dir_X*=-1
@@ -213,7 +224,11 @@ function drawball(){
     if(cir_X-R<0){
     	dir_X=0;
     	dir_Y=0;
-    	alert("Game Over!")
+    	if(score > parseInt(localStorage["bestScore"])){    		
+    		localStorage["bestScore"] = score;	
+    	}
+    	bestTag.innerHTML = `Best Score: ${localStorage["bestScore"]}`;
+    		
     }
 
     if (cir_Y+R > can.height || cir_Y-R<0 ) {
@@ -223,9 +238,8 @@ function drawball(){
     if ((cir_X-R <= bar_W*1.66) && (cir_Y>bar_Y && cir_Y<bar_Y+bar_H)){
         dir_X*=-1;
         score++;
-        bar_H -= 25;
-        localStorage["curScore"] += 1;
-        console.log(score);
+        bar_H *= .8;
+        scoreTag.innerHTML = `Score: ${score}`;
     }
 
     cir_X+=4*dir_X; 
@@ -237,6 +251,7 @@ function drawball(){
 }
 
 function drawbar(){
+	window.addEventListener("mousemove",mouseXY);
     ctx.beginPath();
     ctx.fillStyle="red";
     ctx.fillRect(bar_X,bar_Y ,bar_W,bar_H);
@@ -248,3 +263,4 @@ function stopLoading(){
 	clearInterval(loading);
 	setInterval(startGame,17);
 }
+
