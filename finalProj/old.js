@@ -7,7 +7,6 @@ for(let i = 1; i<10;i++){
 //global variables
 let ctx;
 let can;
-
 let cir_X = 300;
 let cir_Y = 300;
 let R = 20;
@@ -22,8 +21,7 @@ let multiplier;
 let color = "blue";
 let speed = 4;
 
-
-let loading;
+let loading = setInterval(RndCircle,500);
 
 
 window.onload = function() {
@@ -37,8 +35,6 @@ window.onload = function() {
 	updateTime();
 	setInterval(updateTime, 500);
 
-
- 	
 	//avatars
 	let avatars = ["images/iq.jpg", "images/sledge.jpg","images/jager.jpg",
 	"images/castle.jpg","images/fuze.jpg"];
@@ -90,12 +86,9 @@ window.onload = function() {
 	can = document.querySelector("#myCanvas");
 	ctx = can.getContext("2d");
 
-
-
 	// function to make canvis fill container div
 	fitCanvas(can);
 
-	loading = setInterval(RndCircle,1000);
 	// start game on page load
 	setTimeout(stopLoading, 3000);
 
@@ -109,8 +102,6 @@ window.onload = function() {
 	bestTag.innerHTML = `Best Score: ${localStorage["bestScore"]}`;
 	scoreTag.innerHTML = "Score: 0";
 
-	// let newInfo = document.querySelector("#lvl");
-	// alert(newInfo.value);
 
 }
 
@@ -155,10 +146,15 @@ function changeInfo(){
 	// color = prompt("Choose color:")
 	// speed = parseInt(prompt("Choose speed:"));
 
+	// start game on level selection
+	//clearTimeout(load);
+	//setTimeout(stopLoading, 1000);
+	//alert(newInfo.value.slice(3,4));
 }
 
 
 function resetInfo(){
+	//setTimeout(stopLoading, 10000);
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
 	let d = document.createElement("option");
@@ -182,18 +178,11 @@ function resetInfo(){
 	bar_H = 100;
 	score = 0;
 	scoreTag.innerHTML = "Score: 0";
-	clearInterval(start);
-	ctx.clearRect(0,0,can.width,can.height);
-	//loading = setInterval(RndCircle,1000);
-	//clearInterval(RndCircle);
-	//setInterval(loading);
-	//clearTimeout(start);
-	//setInterval(RndCircle,1000);
 	//setTimeout(load,1);
-	// setInterval(RndCircle,1000);
+	setInterval(RndCircle,1000);
 
 	// start game on reset
-	// setTimeout(stopLoading, 1000);
+	setTimeout(stopLoading, 1000);
 
 
 }
@@ -305,7 +294,7 @@ function drawball(){
 }
 
 function drawbar(){
-	can.addEventListener("mousemove",mouseXY);
+	window.addEventListener("mousemove",mouseXY);
     ctx.beginPath();
     ctx.fillStyle="red";
     ctx.fillRect(bar_X,bar_Y ,bar_W,bar_H);
@@ -315,12 +304,15 @@ function drawbar(){
 
 function stopLoading(){
 	clearInterval(loading);
-	start = setInterval(startGame,17);
+	setInterval(startGame,17);
 }
 
-// function quit(){
+// function load(){
 // 	clearInterval(stopLoading);
 // 	ctx.fillStyle="white";
 // 	ctx.fillRect(0,0,can.width,can.height);
 // 	setInterval(RndCircle, 1000);
+
+
 // }
+

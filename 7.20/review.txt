@@ -1,0 +1,6 @@
+focus on canvas
+local storage
+objects array
+defining class and stuff
+image sprites
+video tag, audio tag

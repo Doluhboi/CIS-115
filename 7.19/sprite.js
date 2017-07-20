@@ -3,8 +3,8 @@ let ctx;
 let frame = {
 	W:0,
 	H:0,
-	X:0,
-	Y:0,
+	X:200,
+	Y:200,
 	speed:5,
 	currentFrame:0,
 	direction:0
@@ -19,9 +19,17 @@ window.onload = () => {
 }
 
 function draw(event){
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	let img2 = new Image();
+	img2.onload = () => {
+		ctx.drawImage(img2,0,0,350,350,0,0,canvas.width,canvas.height);
+	}
+	img2.src="house.png"
+
+
 	let img = new Image();
 	img.onload = ()=>{
-		ctx.clearRect(0,0,canvas.width,canvas.height);
+		
 		frame.W = img.width/4;
 		frame.H = img.height/4;
 
@@ -46,10 +54,26 @@ function draw(event){
 			frame.Y+=frame.speed;
 		}
 
-		if(frame.X>canvas.width-frame.W-15)
-			frame.speed *= -1;
-		if(frame.X<0)
-			frame.speed = 0;
+		// edge detection
+		if(frame.X > canvas.width-2*frame.W)
+			frame.X = canvas.width-2*frame.W;
+		
+		if(frame.X < 0)
+			frame.X = 0;
+
+		if(frame.Y < 0)
+			frame.Y=0;
+
+		if(frame.Y > canvas.height-2*frame.H)
+			frame.Y = canvas.height-2*frame.H;
+		// end edge detection 
+
+
+		if(frame.X > 50 && frame.X <80 && frame.Y > 50 && frame.Y < 80){
+			ctx.fillStyle = "yellow";
+			ctx.fillText("start singing!", 180,180);
+		}
+
 
 		ctx.drawImage(img,
 		  // img sprite
