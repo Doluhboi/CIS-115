@@ -7,6 +7,20 @@ for(let i = 1; i<10;i++){
 //global variables
 let ctx;
 let can;
+// let circleAtt = {
+// 	cir_X: 300,
+// 	cir_Y: 300,
+// 	R: 20,
+// 	dir_X: 1,
+// 	dir_Y:1
+// };
+
+// let barAtt = {
+// 	bar_X:20,
+// 	bar_Y:150,
+// 	bar_W:20,
+// 	bar_H:100
+// }
 let cir_X = 300;
 let cir_Y = 300;
 let R = 20;
@@ -17,7 +31,11 @@ let bar_Y =150;
 let bar_W = 10;
 let bar_H = 100;
 let score = 0;
+let multiplier;
+let color = "blue";
+let speed = 4;
 let loading = setInterval(RndCircle,1000);
+
 // let scoreTag = document.querySelector("#curScore");
 // let bestTag = document.querySelector("#bestScore");
 
@@ -87,7 +105,8 @@ window.onload = function() {
 	// function to make canvis fill container div
 	fitCanvas(can);
 
-	setTimeout(stopLoading, 10000);
+	// start game on page load
+	//setTimeout(stopLoading, 10000);
 
 
 	// set best score on page load
@@ -98,6 +117,9 @@ window.onload = function() {
 	let bestTag = document.querySelector("#bestScore");
 	bestTag.innerHTML = `Best Score: ${localStorage["bestScore"]}`;
 	scoreTag.innerHTML = "Score: 0";
+
+	// let newInfo = document.querySelector("#lvl");
+	// alert(newInfo.value);
 
 
 
@@ -135,14 +157,24 @@ function addGC(){
 function changeInfo(){
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
-
-	if(newInfo.value != "--Start!--")
+	if(newInfo.value != "--Start!--"){
 		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
+		multiplier = newInfo.value.slice(3,4);
+		//alert(multiplier);
+	}
+
+	// R = parseInt(prompt("Choose size of ball:"));
+	// color = prompt("Choose color:")
+	// speed = parseInt(prompt("Choose speed:"));
+
+	// start game on level selection
+	setTimeout(stopLoading, 1000);
 	//alert(newInfo.value.slice(3,4));
 }
 
 
 function resetInfo(){
+	//setTimeout(stopLoading, 10000);
 	let currentInfo = document.querySelector("#currentLevel");
 	let newInfo = document.querySelector("#lvl");
 	let d = document.createElement("option");
@@ -166,7 +198,12 @@ function resetInfo(){
 	bar_H = 100;
 	score = 0;
 	scoreTag.innerHTML = "Score: 0";
-	setTimeout(stopLoading, 10000);
+	setTimeout(load,1);
+	// setInterval(RndCircle,1000);
+
+	// start game on reset
+	// setTimeout(stopLoading, 1000);
+
 
 }
 
@@ -218,6 +255,7 @@ function startGame(){
     
 
 function drawball(){
+	
     //clearing everything from canvas
     ctx.beginPath();
     ctx.fillStyle = "white";
@@ -226,8 +264,8 @@ function drawball(){
     ctx.closePath();
     // 2. Drawing the circle in a new position
     ctx.beginPath();
-    ctx.fillStyle="blue";
-    ctx.arc(cir_X, cir_Y,20,0,2*Math.PI);
+    ctx.fillStyle=color;
+    ctx.arc(cir_X, cir_Y,R,0,2*Math.PI);
 	let scoreTag = document.querySelector("#curScore");
 	let bestTag = document.querySelector("#bestScore");
 
@@ -259,17 +297,16 @@ function drawball(){
     }
 
     // if ball hits bar
-    //let newInfo = document.querySelector("#lvl");
-    //let multiplier = newInfo.value.slice(3,4)
     if ((cir_X-R <= bar_W*1.66) && (cir_Y>bar_Y && cir_Y<bar_Y+bar_H)){
         dir_X*=-1;
         score++;
         bar_H *= .8;
         scoreTag.innerHTML = `Score: ${score}`;
+        //alert(multiplier);
     }
 
-    cir_X+=4*dir_X; 
-    cir_Y+=5*dir_Y;
+    cir_X+=speed*dir_X; 
+    cir_Y+=speed*dir_Y;
 
     ctx.fill();
     ctx.closePath();
@@ -288,5 +325,14 @@ function drawbar(){
 function stopLoading(){
 	clearInterval(loading);
 	setInterval(startGame,17);
+}
+
+function load(){
+	clearInterval(stopLoading);
+	ctx.fillStyle="white";
+	ctx.fillRect(0,0,can.width,can.height);
+	setInterval(RndCircle, 1000);
+
+
 }
 
