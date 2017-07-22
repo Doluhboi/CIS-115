@@ -44,6 +44,9 @@ function draw(event){
 	if(cDrp.selectedIndex == 2){
 		ctx.fillStyle = "blue";
 	}
+	if(cDrp.selectedIndex == 3){
+		ctx.fillStyle = "yellow";
+	}
 	if(mouseIsDown == 1){
 		if(drp.selectedIndex == 0){
 			ctx.arc(event.clientX-(brushSize/2),
@@ -77,6 +80,9 @@ function changeBg(){
 	}
 	if(canColor.selectedIndex == 2){
 		ctx.fillStyle = "black";
+	}
+	if(canColor.selectedIndex == 3){
+		ctx.fillStyle = "purple";
 	}
 
 	ctx.fillRect(0,0,canvas.width, canvas.height);

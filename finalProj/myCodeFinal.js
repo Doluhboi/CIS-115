@@ -18,7 +18,7 @@ let bar_Y =150;
 let bar_W = 10;
 let bar_H = 100;
 let score = 0;
-let multiplier;
+let multiplier = 0;
 let color = "blue";
 let speed = 4;
 
@@ -82,6 +82,10 @@ window.onload = function() {
 	let btn3 = document.querySelector("#resetBtn");
 	btn3.addEventListener("click", resetInfo);
 
+	// confirm button
+	let btn2 = document.querySelector("#confirmSet");
+	btn2.addEventListener("click", customSettings);
+
 	// change info displayed when user selects an option
 	let cngInfo = document.querySelector("#lvl");
 	cngInfo.addEventListener("change", changeInfo);
@@ -97,7 +101,7 @@ window.onload = function() {
 
 	loading = setInterval(RndCircle,1000);
 	// start game on page load
-	setTimeout(stopLoading, 3000);
+	setTimeout(stopLoading, 10000);
 
 
 	// set best score on page load
@@ -148,13 +152,25 @@ function changeInfo(){
 	if(newInfo.value != "--Start!--"){
 		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 		multiplier = newInfo.value.slice(3,4);
-		//alert(multiplier);
 	}
+	bar_H -= multiplier*5;
+	clearInterval(start);
+	ctx.clearRect(0,0,can.width,can.height);
+	loading = setInterval(RndCircle,1000);
+	setTimeout(stopLoading, 10000);
+}
 
-	// R = parseInt(prompt("Choose size of ball:"));
-	// color = prompt("Choose color:")
-	// speed = parseInt(prompt("Choose speed:"));
-
+function customSettings(){
+	let bSize = document.querySelector("#ballSize");
+	let bColor = document.querySelector("#ballColor");
+	let bSpeed = document.querySelector("#ballSpeed");
+	R = parseInt(bSize.value);
+	color = bColor.value.toString();
+	speed = parseInt(bSpeed.value); 
+	clearInterval(start);
+	ctx.clearRect(0,0,can.width,can.height);
+	loading = setInterval(RndCircle,1000);
+	setTimeout(stopLoading, 10000);
 }
 
 
@@ -180,21 +196,16 @@ function resetInfo(){
 	bar_Y =150;
 	bar_W = 10;
 	bar_H = 100;
+	multiplier = 0;
+	color = "blue";
+	speed = 4;
+	R = 20;
 	score = 0;
 	scoreTag.innerHTML = "Score: 0";
 	clearInterval(start);
 	ctx.clearRect(0,0,can.width,can.height);
-	//loading = setInterval(RndCircle,1000);
-	//clearInterval(RndCircle);
-	//setInterval(loading);
-	//clearTimeout(start);
-	//setInterval(RndCircle,1000);
-	//setTimeout(load,1);
-	// setInterval(RndCircle,1000);
-
-	// start game on reset
-	// setTimeout(stopLoading, 1000);
-
+	loading = setInterval(RndCircle,1000);
+	setTimeout(stopLoading, 10000);
 
 }
 
@@ -278,6 +289,7 @@ function drawball(){
 		bar_Y =150;
 		bar_W = 10;
 		bar_H = 100;
+		bar_H -= multiplier*5;
 		score = 0;
 		scoreTag.innerHTML = "Score: 0";
     		
@@ -305,7 +317,7 @@ function drawball(){
 }
 
 function drawbar(){
-	can.addEventListener("mousemove",mouseXY);
+	window.addEventListener("mousemove",mouseXY);
     ctx.beginPath();
     ctx.fillStyle="red";
     ctx.fillRect(bar_X,bar_Y ,bar_W,bar_H);
@@ -318,9 +330,3 @@ function stopLoading(){
 	start = setInterval(startGame,17);
 }
 
-// function quit(){
-// 	clearInterval(stopLoading);
-// 	ctx.fillStyle="white";
-// 	ctx.fillRect(0,0,can.width,can.height);
-// 	setInterval(RndCircle, 1000);
-// }

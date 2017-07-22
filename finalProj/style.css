@@ -63,8 +63,8 @@ body {
 	padding: 20px;
 }
 
-#gameCode , #levelSelection, #reset  {
-	width: 33%;
+#gameCode , #levelSelection, #reset, #customSettings {
+	width: 25%;
 	height: 100px;
 	float: left;
 	text-align: center;
