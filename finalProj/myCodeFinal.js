@@ -326,6 +326,16 @@ function getUserNames(){
 	}
 }
 
+function showSizeValue(newValue){
+	let sizeSpan = document.querySelector("#sizeSlider");
+	sizeSpan.innerHTML = `Ball Size: ${newValue}`;
+	
+}
+
+function showSpeedValue(newValue){
+	let speedSpan = document.querySelector("#speedSlider");
+	speedSpan.innerHTML = `Ball Speed: ${newValue}`;	
+}
 
 
 

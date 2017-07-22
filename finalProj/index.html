@@ -47,14 +47,16 @@
 			</div>
 
 			<div id="customSettings">
-				<h3>Custom Game</h3>
-				<input type="text" id="ballSize" placeholder="Set Ball Size"
-				size="15">
-				
-				<input type="text" id="ballColor" placeholder="Set Ball Color" size="15">
-				
-				<input type="text" id="ballSpeed" placeholder="Set Ball Speed" size="15">
+				 <h3>Custom Game</h3> 
 				<button id="confirmSet">Confirm</button>
+
+				<input type="range" id="ballSize" min="10" max="80" step="10" onchange="showSizeValue(this.value)">
+				<span id="sizeSlider">Ball Size:</span>
+				
+				<input type="color" id="ballColor" >
+				
+				<input type="range" id="ballSpeed" min="2" max="10" step="2" onchange="showSpeedValue(this.value)" >
+				<span id="speedSlider">Ball Speed:</span>
 				
 			</div>
 

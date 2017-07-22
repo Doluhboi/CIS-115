@@ -65,7 +65,7 @@ body {
 
 #gameCode , #levelSelection, #reset, #customSettings {
 	width: 25%;
-	height: 100px;
+	height: 150px;
 	float: left;
 	text-align: center;
 }
