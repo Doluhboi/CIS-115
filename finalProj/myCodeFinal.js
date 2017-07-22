@@ -7,7 +7,6 @@ for(let i = 1; i<10;i++){
 //global variables
 let ctx;
 let can;
-
 let cir_X = 300;
 let cir_Y = 300;
 let R = 20;
@@ -17,62 +16,23 @@ let bar_X =20;
 let bar_Y =150;
 let bar_W = 10;
 let bar_H = 100;
-let score = 0;
 let multiplier = 0;
 let color = "blue";
 let speed = 4;
-
-
+let score = 0;
 let loading;
 
 
 window.onload = function() {
-	/* On page load, the following will be executed
-	set clock value
-	generate two random avatar pictures
-	ask users for names
-	*/
-
 	// clock
 	updateTime();
 	setInterval(updateTime, 500);
 
-
- 	
-	//avatars
-	let avatars = ["images/iq.jpg", "images/sledge.jpg","images/jager.jpg",
-	"images/castle.jpg","images/fuze.jpg"];
-	let rand1 = avatars[Math.floor(Math.random() * avatars.length)];
-	let rand2 = avatars[Math.floor(Math.random() * avatars.length)];
-	while (rand1 == rand2){
-		rand2 = avatars[Math.floor(Math.random() * avatars.length)];
-	}
-	let avatar1 = document.querySelector("#avatar1");
-	avatar1.src = rand1;
-	let avatar2 = document.querySelector("#avatar2");
-	avatar2.src = rand2;
+	// avatars
+	generateAvatar();
 
 	// user info
-	let aTag = document.querySelector("#user1");
-	let userID = document.createElement("a");
-	if(localStorage["user1ID"] == null){
-		localStorage["user1ID"] = prompt("User 1 name: ");
-		userID.innerHTML = 'Player 1: '+localStorage["user1ID"];
-		aTag.appendChild(userID);
-	} else {
-		userID.innerHTML = 'Player 1: '+localStorage["user1ID"];
-		aTag.appendChild(userID);
-	}
-	let a2Tag = document.querySelector("#user2");
-	let user2ID = document.createElement("a");
-	if(localStorage["user2ID"] == null){
-		localStorage["user2ID"] = prompt("User 2 name: ");
-		user2ID.innerHTML = 'Player 2: '+localStorage["user2ID"];
-		a2Tag.appendChild(user2ID);
-	} else{
-		user2ID.innerHTML = 'Player 2: '+localStorage["user2ID"];
-		a2Tag.appendChild(user2ID);
-	}
+	getUserNames();
 
 	// add button feature
 	let btn = document.querySelector("#gcBtn");
@@ -94,8 +54,6 @@ window.onload = function() {
 	can = document.querySelector("#myCanvas");
 	ctx = can.getContext("2d");
 
-
-
 	// function to make canvis fill container div
 	fitCanvas(can);
 
@@ -112,9 +70,6 @@ window.onload = function() {
 	let bestTag = document.querySelector("#bestScore");
 	bestTag.innerHTML = `Best Score: ${localStorage["bestScore"]}`;
 	scoreTag.innerHTML = "Score: 0";
-
-	// let newInfo = document.querySelector("#lvl");
-	// alert(newInfo.value);
 
 }
 
@@ -153,7 +108,7 @@ function changeInfo(){
 		currentInfo.innerHTML = `${obj[newInfo.value]} :: ${newInfo.value}`;
 		multiplier = newInfo.value.slice(3,4);
 	}
-	bar_H -= multiplier*5;
+	bar_H =100 - multiplier*5;
 	clearInterval(start);
 	ctx.clearRect(0,0,can.width,can.height);
 	loading = setInterval(RndCircle,1000);
@@ -188,19 +143,20 @@ function resetInfo(){
 	input.value = "";
 
 	let scoreTag = document.querySelector("#curScore");
+	
 	cir_X = 300;
 	cir_Y = 300;
+	R = 20;
 	dir_X = 1;
 	dir_Y = 1;
 	bar_X =20;
 	bar_Y =150;
 	bar_W = 10;
 	bar_H = 100;
+	score = 0;
 	multiplier = 0;
 	color = "blue";
 	speed = 4;
-	R = 20;
-	score = 0;
 	scoreTag.innerHTML = "Score: 0";
 	clearInterval(start);
 	ctx.clearRect(0,0,can.width,can.height);
@@ -224,7 +180,7 @@ function RndCircle(){
 	let Red = Math.floor(Math.random() * 255);
 	let Green = Math.floor(Math.random() * 255);
 	let Blue = Math.floor(Math.random() * 255);
-	let Alpha = 15/R;
+	let Alpha = 10/R;
 	ctx.fillStyle = `rgba(${Red},${Green},${Blue},${Alpha}`;
 	ctx.fill();
 	ctx.closePath();
@@ -257,7 +213,6 @@ function startGame(){
     
 
 function drawball(){
-	
     //clearing everything from canvas
     ctx.beginPath();
     ctx.fillStyle = "white";
@@ -271,10 +226,12 @@ function drawball(){
 	let scoreTag = document.querySelector("#curScore");
 	let bestTag = document.querySelector("#bestScore");
 
+	// ball hits right edge
     if (cir_X+R > can.width ) {
         dir_X*=-1
     }
 
+    // ball hits left edge, game over
     if(cir_X-R<0){
     	if(score > parseInt(localStorage["bestScore"])){    		
     		localStorage["bestScore"] = score;	
@@ -295,17 +252,18 @@ function drawball(){
     		
     }
 
+    // ball hits top or bottom
     if (cir_Y+R > can.height || cir_Y-R<0 ) {
         dir_Y*=-1
     }
 
-    // if ball hits bar
+    // ball hits bar
     if ((cir_X-R <= bar_W*1.66) && (cir_Y>bar_Y && cir_Y<bar_Y+bar_H)){
         dir_X*=-1;
         score++;
         bar_H *= .8;
         scoreTag.innerHTML = `Score: ${score}`;
-        //alert(multiplier);
+        console.log(bar_H);
     }
 
     cir_X+=speed*dir_X; 
@@ -329,4 +287,45 @@ function stopLoading(){
 	clearInterval(loading);
 	start = setInterval(startGame,17);
 }
+
+function generateAvatar(){
+	// randomly selects two avatar pictures from local folder
+	let avatars = ["images/iq.jpg", "images/sledge.jpg","images/jager.jpg",
+	"images/castle.jpg","images/fuze.jpg"];
+	let rand1 = avatars[Math.floor(Math.random() * avatars.length)];
+	let rand2 = avatars[Math.floor(Math.random() * avatars.length)];
+	while (rand1 == rand2){
+		rand2 = avatars[Math.floor(Math.random() * avatars.length)];
+	}
+	let avatar1 = document.querySelector("#avatar1");
+	avatar1.src = rand1;
+	let avatar2 = document.querySelector("#avatar2");
+	avatar2.src = rand2;
+}
+
+function getUserNames(){
+	let aTag = document.querySelector("#user1");
+	let userID = document.createElement("a");
+	if(localStorage["user1ID"] == null){
+		localStorage["user1ID"] = prompt("User 1 name: ");
+		userID.innerHTML = 'Player 1: '+localStorage["user1ID"];
+		aTag.appendChild(userID);
+	} else {
+		userID.innerHTML = 'Player 1: '+localStorage["user1ID"];
+		aTag.appendChild(userID);
+	}
+	let a2Tag = document.querySelector("#user2");
+	let user2ID = document.createElement("a");
+	if(localStorage["user2ID"] == null){
+		localStorage["user2ID"] = prompt("User 2 name: ");
+		user2ID.innerHTML = 'Player 2: '+localStorage["user2ID"];
+		a2Tag.appendChild(user2ID);
+	} else{
+		user2ID.innerHTML = 'Player 2: '+localStorage["user2ID"];
+		a2Tag.appendChild(user2ID);
+	}
+}
+
+
+
 
