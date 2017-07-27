@@ -2,7 +2,7 @@
 <html>
 	<head lang = "en">
 		<meta charset="utf-8">
-		<script type="text/javascript" src='myCodeFinal.js'></script>
+		<script type="text/javascript" src="myCodeFinal.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>Kyle Bennett - CIS 115 - Summer 17</title>
 	</head>
@@ -12,7 +12,7 @@
 		<header>
 			<div id="topMenu" >
 				<span>Kyle Bennett </span>
-				<nav id="folders"> 
+				<nav id="folders">
 					<a href="../Assignment1/index.html">assign1</a>
 					<a href="../Assignment2/index.html">assign2</a>
 					<a href="../Assignment3/index.html">assign3</a>
@@ -20,20 +20,20 @@
 					<a href="index.html">Final Project</a>
 					<a href="style.css">css</a>
 					<a href="/images">images</a>
-				</nav> 
+				</nav>
 			</div>
 		</header>
 
 		<main> <!-- Main section with text, images and users -->
 			<div style="text-align: center;">
 				<h1 id="currentLevel">Welcome!</h1>
-				
+
 			</div>
 
 			<div id="gameCode">
-				<h3>Do you have a game code?</h2>
-				
-				<input type="text" id="gcInput" placeholder="e.g. GC_X"> 
+				<h2>Do you have a game code?</h2>
+
+				<input type="text" id="gcInput" placeholder="e.g. GC_X">
 				<button id="gcBtn">Add!</button>
 
 			</div>
@@ -47,37 +47,37 @@
 			</div>
 
 			<div id="customSettings">
-				 <h3>Custom Game</h3> 
+				 <h3>Custom Game</h3>
 				<button id="confirmSet">Confirm</button>
 
 				<input type="range" id="ballSize" min="10" max="80" step="10" onchange="showSizeValue(this.value)">
 				<span id="sizeSlider">Ball Size:</span>
-				
+
 				<input type="color" id="ballColor" >
-				
+
 				<input type="range" id="ballSpeed" min="2" max="10" step="2" onchange="showSpeedValue(this.value)" >
 				<span id="speedSlider">Ball Speed:</span>
-				
+
 			</div>
 
-			<div id="reset"> 
+			<div id="reset">
 				<h3>Clear the game history</h3>
 				<button id="resetBtn">Reset</button>
 			</div>
 
-			<div id="scoreDiv"> 
+			<div id="scoreDiv">
 				<a id="curScore"> </a>
 				<br>
 				<a id="bestScore"> </a>
-				
+
 			</div>
 
-			
+
 			<div id="leftPanel">
-				<img id="avatar1">	
+				<img id="avatar1">
 				<a id="user1">	</a>
 			</div>
-					
+
 			<div id="canvasContainer" style="width: 50%; height: 500px;">
 				<canvas id="myCanvas">Your browser does not support canvas</canvas>
 			</div>
